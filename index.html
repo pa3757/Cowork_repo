@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>서울까지 왕복 8시간을, 지역 거점 동시 상영으로</title>
+<style>
+  /* 색상은 단 두 가지: 잉크(짙은 남색) + 크림 */
+  :root {
+    --ink: #1c2340;
+    --paper: #f6efdc;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    background: var(--ink);
+    color: var(--ink);
+    font-family: "Pretendard", "Noto Sans KR", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+  }
+
+  .ticket {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 0 230px;
+    width: 100%;
+    max-width: 1000px;
+    min-height: 460px;
+    background: var(--paper);
+    border-radius: 18px;
+  }
+
+  /* ---------- 왼쪽 : 본문 ---------- */
+  .main {
+    padding: 44px 48px 40px 52px;
+    display: flex;
+    flex-direction: column;
+  }
+  .meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--ink);
+  }
+  .title {
+    margin-top: 30px;
+    font-size: clamp(28px, 4.2vw, 44px);
+    line-height: 1.28;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    word-break: keep-all;
+  }
+  .summary {
+    margin-top: 22px;
+    display: inline-block;
+    align-self: flex-start;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 11px 18px;
+    border-radius: 6px;
+    font-size: clamp(15px, 1.7vw, 18px);
+    font-weight: 700;
+    word-break: keep-all;
+  }
+  .label {
+    margin-top: 32px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+  }
+  .reasons {
+    list-style: none;
+    margin-top: 10px;
+    border-top: 1px solid var(--ink);
+  }
+  .reasons li {
+    display: flex;
+    gap: 16px;
+    align-items: baseline;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--ink);
+    font-size: clamp(14px, 1.5vw, 16px);
+    line-height: 1.55;
+    font-weight: 500;
+    word-break: keep-all;
+  }
+  .reasons .no {
+    flex: none;
+    font-weight: 900;
+    font-size: 18px;
+    width: 22px;
+  }
+
+  /* ---------- 가운데 : 절취선 ---------- */
+  .cut {
+    position: relative;
+    width: 0;
+    border-left: 3px dashed var(--ink);
+    margin: 18px 0;
+  }
+  .cut::before,
+  .cut::after {
+    content: "";
+    position: absolute;
+    left: -21px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--ink);
+  }
+  .cut::before { top: -38px; }
+  .cut::after  { bottom: -38px; }
+
+  /* ---------- 오른쪽 : 이름 ---------- */
+  .stub {
+    padding: 36px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+  }
+  .stub .small {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+  }
+  .name {
+    writing-mode: vertical-rl;
+    font-size: 54px;
+    font-weight: 900;
+    letter-spacing: 0.3em;
+    padding-left: 0.3em;
+  }
+  .stub .bars {
+    width: 100%;
+    height: 38px;
+    background: repeating-linear-gradient(
+      90deg,
+      var(--ink) 0 3px, var(--paper) 3px 5px,
+      var(--ink) 5px 6px, var(--paper) 6px 10px,
+      var(--ink) 10px 14px, var(--paper) 14px 16px
+    );
+  }
+
+  /* ---------- 모바일 : 위/아래로 쌓기 ---------- */
+  @media (max-width: 720px) {
+    .ticket { grid-template-columns: 1fr; grid-template-rows: auto 0 auto; min-height: 0; }
+    .main { padding: 32px 24px 30px; }
+    .cut {
+      width: auto;
+      height: 0;
+      border-left: 0;
+      border-top: 3px dashed var(--ink);
+      margin: 0 18px;
+    }
+    .cut::before, .cut::after { top: -21px; left: auto; }
+    .cut::before { left: -38px; }
+    .cut::after  { right: -38px; bottom: auto; }
+    .stub { flex-direction: row; padding: 22px 24px 26px; gap: 16px; }
+    .name { writing-mode: horizontal-tb; font-size: 36px; letter-spacing: 0.2em; padding-left: 0; }
+    .stub .bars { width: 90px; height: 32px; }
+  }
+</style>
+</head>
+<body>
+  <main class="ticket">
+
+    <section class="main">
+      <div class="meta">
+        <span>ADMIT ONE</span>
+        <span>기획안 · 지역 거점 동시 상영</span>
+      </div>
+
+      <h1 class="title">서울까지 왕복 8시간을,<br>지역 거점 동시 상영으로</h1>
+
+      <p class="summary">서울에 못 가는 지방 팬도 같은 시간에 같이 본다.</p>
+
+      <p class="label">근거 · REASON</p>
+      <ol class="reasons">
+        <li><span class="no">1</span><span>painpoint를 하나로 줄였다.</span></li>
+        <li><span class="no">2</span><span>VR이 아니라 극장 생중계였다 → 대형 스크린 동시 상영</span></li>
+        <li><span class="no">3</span><span>티켓은 1.5~2.5만원대 + 현장 MD</span></li>
+      </ol>
+    </section>
+
+    <div class="cut" aria-hidden="true"></div>
+
+    <aside class="stub">
+      <span class="small">NAME</span>
+      <span class="name">손준수</span>
+      <div class="bars" aria-hidden="true"></div>
+    </aside>
+
+  </main>
+</body>
+</html>
